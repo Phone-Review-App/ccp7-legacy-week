@@ -1,4 +1,4 @@
-require("dotenv").config({
+require("dotenv").config({ // force commit
   path: "./.env",
 });
 
