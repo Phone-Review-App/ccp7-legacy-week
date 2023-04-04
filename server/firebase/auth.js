@@ -1,11 +1,12 @@
 const firebase = require("firebase/app");
-const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword } = require("firebase/auth"); // look up createUserWithEmailAndPassword
 const firebaseConfig = require("./firebase_conf.js");
+console.log(firebaseConfig)
 
 const enviroment = process.env.NODE_ENV === "production" ? "production" : "development";
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig[enviroment].config);
+const app = firebase.initializeApp(firebaseConfig[enviroment].config);
 
 const auth = getAuth();
 
