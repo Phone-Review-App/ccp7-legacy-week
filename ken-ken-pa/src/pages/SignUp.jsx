@@ -3,7 +3,7 @@ import SubmitBtn from "./SubmitBtn";
 import UIText from "../data/locales.json";
 import axios from "axios";
 
-import "./Signup.css"
+import "./SignUp.css"
 
 const Signup = ( props ) => {
     const {currentLocale} = props;
