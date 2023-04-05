@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   jwt: {
-    secret: process.env.SECREAT_KEY,
+    secret: process.env.SECRET_KEY,
     options: {
       algorithm: "HS256",
       expiresIn: "1d"

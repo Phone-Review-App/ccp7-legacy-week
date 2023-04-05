@@ -5,7 +5,7 @@ function vaildToken(req, res, next) {
   try {
     const token = req.header("jwt-token");
     const decoded = jwt.verify(token, config.jwt.secret);
-    console.log("decoded token", token);
+    console.log("decoded token 🏀", token);
     next()
   } catch (err) { 
     return res.send(401).json({
