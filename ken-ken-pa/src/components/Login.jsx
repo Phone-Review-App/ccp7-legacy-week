@@ -3,9 +3,12 @@ import SubmitBtn from "./SubmitBtn";
 import UIText from "../data/locales.json";
 import axios from "axios";
 import "./Login.css";
+import Signup from './Signup';
+
+import { Routes, Route } from 'react-router-dom';
 
 export default function Login(props) {
-  const {currentLocale, clickOnSignUp } = props;
+  const {currentLocale } = props;
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
   
@@ -60,7 +63,10 @@ export default function Login(props) {
             </label>
           </div>
           <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
-          <a href="javascript:clickOnSignUp()">{UIText["signup"][currentLocale]}</a><br />
+          <Routes>
+            <Route exact path="/Signup" element={UIText["signup"][currentLocale]} />
+              
+          </Routes>
           { isloginUnsuccess
             && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
           }

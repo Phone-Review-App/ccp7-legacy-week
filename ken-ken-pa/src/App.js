@@ -68,10 +68,10 @@ export default function App() {
               <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}></AddNewMemory>
             ) : (
               currentView === "Login" ? (
-                <Login currentLocale={currentLocale}/>
+                <Login currentLocale={currentLocale} onClick={handleViewChange}/>
               ) : (
                 ( currentView === "Signup" ? (
-                  <Signup currentLocale={currentLocale} onClick={handleViewChange}/>
+                  <Signup currentLocale={currentLocale} />
                 ) : (
 
                 

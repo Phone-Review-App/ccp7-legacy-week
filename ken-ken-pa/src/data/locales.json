@@ -296,5 +296,9 @@
     "submit-memory": {
         "en": "Submit",
         "ja": "思い出を追加"
+    },
+    "photo-zone": {
+        "en": "Photo Zone",
+        "ja": "写真区"
     }
 }
