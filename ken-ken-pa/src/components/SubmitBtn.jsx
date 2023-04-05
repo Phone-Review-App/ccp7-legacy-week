@@ -8,7 +8,7 @@ export default function SubmitBtn(props) {
   var labelText;
   switch (type) {
     case "signup":
-      labelText = UIText['signup-submit'][currentLocale];
+      labelText = UIText['signup'][currentLocale];
       break;
     case "login":
       labelText = UIText['login-submit'][currentLocale];
@@ -16,8 +16,9 @@ export default function SubmitBtn(props) {
     case "memory":
       labelText = UIText['submit-memory'][currentLocale];
       break;
+    
     default:
-      labelText = "Submit";
+      labelText = UIText['signup-submit'][currentLocale];
       break;
   }
 

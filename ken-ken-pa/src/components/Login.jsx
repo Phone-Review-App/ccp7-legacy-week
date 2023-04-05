@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Login.css";
 
 export default function Login(props) {
-  const {currentLocale} = props;
+  const {currentLocale, clickOnSignUp } = props;
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
   
@@ -37,7 +37,7 @@ export default function Login(props) {
       console.error(error);
     }
   };
-
+  
 
   return (
     <div className='container'>
@@ -60,7 +60,7 @@ export default function Login(props) {
             </label>
           </div>
           <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
-
+          <a href="javascript:clickOnSignUp()">{UIText["signup"][currentLocale]}</a><br />
           { isloginUnsuccess
             && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
           }

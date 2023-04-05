@@ -1,5 +1,6 @@
 import { React } from "react";
 import UIText from "../data/locales.json";
+import Signup from "../components/Signup"
 
 export default function PopupMenu(props) {
     const {onClick, currentLocale, selectedPrefecture} = props;
@@ -18,9 +19,11 @@ export default function PopupMenu(props) {
                 {
                     currentLocale === "en"
                         ? UIText["see-memories-of"][currentLocale] + UIText.prefectures[selectedPrefecture][currentLocale]
-                        : UIText.prefectures[selectedPrefecture][currentLocale] + UIText["see-memories-of"][currentLocale]
+                        : UIText.prefectures[selectedPrefecture][currentLocale] + UIText["see-memories-of"][currentLocale] 
                 }
             </button>
+            
+            { /* <Signup /> */}
         </div>
     )
 }

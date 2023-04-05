@@ -8,6 +8,7 @@ import PopupMenu from "./components/PopupMenu";
 import PrefectureMemories from "./components/PrefectureMemories";
 import UIText from "./data/locales.json";
 import Navbar from "./components/Navbar";
+import Signup from "./components/Signup"
 
 
 export default function App() {
@@ -69,19 +70,29 @@ export default function App() {
               currentView === "Login" ? (
                 <Login currentLocale={currentLocale}/>
               ) : (
+                ( currentView === "Signup" ? (
+                  <Signup currentLocale={currentLocale} onClick={handleViewChange}/>
+                ) : (
+
+                
                 <div>
                   <Map 
                   handlePopupMenu={handlePopupMenu}
                   setSelectedPrefecture={setSelectedPrefecture}></Map>
 
-                  {isShown === true ? (
+                  {isShown ? (
                     <PopupMenu currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} ></PopupMenu>
                   ) : (
                     <div></div>
                   )}
                 </div>
-        ))))
-      }
+                )
+                )
+                )
+                )
+                )
+        )
+                  }
       </div>
 
       <div className="navbar-container">
