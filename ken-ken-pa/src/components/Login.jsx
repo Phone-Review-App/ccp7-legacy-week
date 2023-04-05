@@ -50,13 +50,13 @@ export default function Login(props) {
           <p>{UIText.email[currentLocale]}</p>
           <div className="inputs">
             <label>
-             <input type="email" name="email" defaultValue="" placeholder="email" required/>
+             <input type="email" name="email" defaultValue="" placeholder={UIText.email[currentLocale]} required/>
           </label>
           </div>  
           <div className="inputs">
             <p>{UIText.password[currentLocale]}</p>
             <label>
-              <input type="password" name="lastName" defaultValue="" placeholder="password" required/>
+              <input type="password" name="lastName" defaultValue="" placeholder={UIText.password[currentLocale]} required/>
             </label>
           </div>
           <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
