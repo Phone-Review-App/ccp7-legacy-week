@@ -35,11 +35,12 @@ router.post("/users/login", async(req, res) => {
 
 router.post("/users/signup", async(req, res) => {
   const { email, password } = req.body;
+  console.log(req.body)
   const newUser = signUpWithEmailAndPassword(email, password);
 
   console.log(newUser);
 
-})
+});
 
 // export 
 module.exports = router;
