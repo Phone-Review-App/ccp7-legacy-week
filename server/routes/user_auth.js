@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { loginWithEmailAndPassword } = require("../firebase/auth");
+const { loginWithEmailAndPassword, signUpWithEmailAndPassword } = require("../firebase/auth");
 const usersModel = require("../model/users.model");
 const jwt = require("jsonwebtoken");
 const jwtConfig = require("../jwt_conf"); 
@@ -32,6 +32,14 @@ router.post("/users/login", async(req, res) => {
     res.status(200).send(body);
   }
 });
+
+router.post("/users/signup", async(req, res) => {
+  const { email, password } = req.body;
+  const newUser = signUpWithEmailAndPassword(email, password);
+
+  console.log(newUser);
+
+})
 
 // export 
 module.exports = router;
