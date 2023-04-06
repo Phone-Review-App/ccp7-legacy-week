@@ -10,30 +10,6 @@ import UIText from "./data/locales.json";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
 
-class TestingApp extends React.Component {
-  constructor (props) {
-    super(props);
-  this.state = {
-    component: "",
-    currentLocale:"",
-    currentView: () => {},
-    SelectedPrefecture: ()=>{},
-    onClick:() => {}
-  }
-
-  }
-  
-}
-
-const Views = [
-  {scene:"", },
-  {scene:"Memories", component:{Memories}},
-  {scene:"PrefectureMemories", component:{PrefectureMemories}},
-  {scene:"AddNewMemory", component:{AddNewMemory}},
-  {scene:"Login", component:{Login}},
-  {scene:"Signup", component:{Signup}}
-]
-
 
 export default function App() {
   const [isShown, setPopupMenu] = useState(false);
@@ -43,15 +19,6 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   // set current user to uid
   const [currentUser, setCurrentUser] = useState("");
-
-  const handleCurrentView = () =>{
-    Views.filter((view) => {
-      // return (
-      //   {component currentLocale={currentLocale} onClick
-      // )
-    })
-  }
-
 
   const handlePopupMenu = (event) => {
     event.preventDefault();
@@ -99,7 +66,7 @@ export default function App() {
       {
         (currentView === "Memories") ? (
           <Memories currentLocale={currentLocale} onClick={handleViewChange}></Memories>
-         ) : (
+        ) : (
           currentView === "PrefectureMemories" ? (
             <PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange}></PrefectureMemories>
           ) : (
@@ -110,11 +77,7 @@ export default function App() {
                 <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView}/>
               ) : (
                 ( currentView === "Signup" ? (
-<<<<<<< HEAD
-                  <Signup currentLocale={currentLocale} onClick={handleCurrentView}/>
-=======
                   <Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
->>>>>>> 6157a2df9b62b4d53f06f20f414f061ff469b08d
                 ) : (
 
                 
