@@ -61,7 +61,6 @@ const Signup = ( props ) => {
                   <input type="password" name="lastName" defaultValue="" placeholder={UIText.password[currentLocale]} required/>
                 </label>
               </div>
-              <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
     
               { isloginUnsuccess
                 && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
