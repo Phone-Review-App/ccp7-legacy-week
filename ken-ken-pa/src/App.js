@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import './App.css';
 import AddNewMemory from "./components/AddNewMemory";
 import Login from "./components/Login";
@@ -9,7 +9,7 @@ import PrefectureMemories from "./components/PrefectureMemories";
 import UIText from "./data/locales.json";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
-
+import CurrentViewport from "./components/CurrentViewport";
 
 export default function App() {
   const [isShown, setPopupMenu] = useState(false);
@@ -26,8 +26,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log(currentUser)
-  }, [currentUser])
+    console.log("🥶",currentUser, currentView)
+  }, [currentUser, currentView])
 
   const handleViewChange = (event) => {
     // When user clicks button, currentView changes to value of button
@@ -57,7 +57,7 @@ export default function App() {
   const gradientStyle = {
    background: 'linear-gradient(to bottom, #8AB4F8, lightblue)',
   }
-  
+
 
   return (
     <div className="App" style={gradientStyle}>
@@ -74,7 +74,7 @@ export default function App() {
               <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}></AddNewMemory>
             ) : (
               currentView === "Login" ? (
-                <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView}/>
+                <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
               ) : (
                 ( currentView === "Signup" ? (
                   <Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />

@@ -11,9 +11,13 @@ import Navbar from './Navbar';
 
 export default function Login(props) {
   const { currentLocale, setCurrentUser, setCurrentView } = props;
+
+  const handleViewChange = (event) =>{
+    event.preventDefault();
+    setCurrentView(event.target.value);
+  }
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
-
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,7 +77,7 @@ export default function Login(props) {
           {/* sign up button */}
           <button 
           value="Signup" 
-          // onClick={handleViewChange}
+          onClick={handleViewChange}
           >
             {UIText.signup[currentLocale]
             }</button><br />
