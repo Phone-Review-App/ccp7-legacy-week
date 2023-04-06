@@ -28,7 +28,7 @@ export default function Login(props) {
       setLoginUnsuccess(true);
     // user login is successful
     } else { 
-      document.cookie = `jwt_token=${loginResult.token}; max-age=3600;`;
+
       setLoginUnsuccess(false);
     }
   };
