@@ -15,9 +15,13 @@ export default function Navbar(props) {
                                 <button className="button" value="AddNewMemory" onClick={handleViewChange} >
                                     { UIText["add-memory"][currentLocale] }
                                 </button>
-                                <button className="logout-button">{UIText.logout[currentLocale]}</button>
+                                <button value="Logout" 
+                                onClick={handleViewChange}className="logout-button">{UIText.logout[currentLocale]}</button>
                             </>
-                        ) : <button className="login-button" value="Login" onClick={handleViewChange}>{UIText.login[currentLocale]}</button>
+                        ) : <>
+                        <button className="login-button" value="Login" onClick={handleViewChange}>{UIText.login[currentLocale]}</button>
+                        <button className="login-button" value="Signup" onClick={handleViewChange}>{UIText.signup[currentLocale]}</button>
+                        </>
         )}
 
         { currentView === "Memories" || 

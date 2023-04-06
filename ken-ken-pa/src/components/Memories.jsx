@@ -9,7 +9,7 @@ export default function Memories(props) {
     <div className="memories-container">
         <h1>{UIText["my-memories"][0][currentLocale]}</h1>
         <h2>{UIText["my-memories"][1][currentLocale]}</h2>
-        <p>Photo zone</p>
+        <p>{UIText["photo-zone"][currentLocale]}</p>
     </div>
    );
 }
