@@ -5,7 +5,8 @@ import axios from "axios";
 import "./Login.css";
 import Signup from './Signup';
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
+
 
 export default function Login(props) {
   const {currentLocale } = props;
@@ -63,10 +64,11 @@ export default function Login(props) {
             </label>
           </div>
           <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
-          <Routes>
+          {/* <Routes>
             <Route exact path="/Signup" element={UIText["signup"][currentLocale]} />
               
-          </Routes>
+          </Routes> */}
+          {/* <Link to="/Signup">{UIText["signup"][currentLocale]}</Link> */}
           { isloginUnsuccess
             && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
           }
