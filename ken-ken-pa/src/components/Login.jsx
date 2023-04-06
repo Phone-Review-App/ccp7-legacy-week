@@ -3,9 +3,13 @@ import SubmitBtn from "./SubmitBtn";
 import UIText from "../data/locales.json";
 import axios from "axios";
 import "./Login.css";
+import Signup from './Signup';
+
+// import { Routes, Route, Link } from 'react-router-dom';
+
 
 export default function Login(props) {
-  const {currentLocale} = props;
+  const {currentLocale } = props;
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
   
@@ -24,7 +28,7 @@ export default function Login(props) {
       setLoginUnsuccess(true);
     // user login is successful
     } else { 
-      document.cookie = `jwt_token=${loginResult.token}; max-age=3600;`;
+
       setLoginUnsuccess(false);
     }
   };
@@ -37,7 +41,7 @@ export default function Login(props) {
       console.error(error);
     }
   };
-
+  
 
   return (
     <div className='container'>
@@ -50,17 +54,21 @@ export default function Login(props) {
           <p>{UIText.email[currentLocale]}</p>
           <div className="inputs">
             <label>
-             <input type="email" name="email" defaultValue="" placeholder="email" required/>
+             <input type="email" name="email" defaultValue="" placeholder={UIText.email[currentLocale]} required/>
           </label>
           </div>  
           <div className="inputs">
             <p>{UIText.password[currentLocale]}</p>
             <label>
-              <input type="password" name="lastName" defaultValue="" placeholder="password" required/>
+              <input type="password" name="lastName" defaultValue="" placeholder={UIText.password[currentLocale]} required/>
             </label>
           </div>
           <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
-
+          {/* <Routes>
+            <Route exact path="/Signup" element={UIText["signup"][currentLocale]} />
+              
+          </Routes> */}
+          {/* <Link to="/Signup">{UIText["signup"][currentLocale]}</Link> */}
           { isloginUnsuccess
             && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
           }
