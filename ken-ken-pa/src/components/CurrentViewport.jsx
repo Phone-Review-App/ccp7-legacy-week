@@ -37,6 +37,7 @@ class CurrentViewport extends Component {
             background: 'linear-gradient(to bottom, #8AB4F8, lightblue)',
         }
       }
+      function testing () {}
     }
       render(){
         const { isAddNewMemory, isLogin, isMemories, isPopupMenu, isPrefectureMemories, isNavbar, isSignup, isNull,} = this.state
@@ -49,6 +50,9 @@ class CurrentViewport extends Component {
 
         let viewport,component;
         let template = <div className style={gradientStyle}></div>
+        if(isNull){
+            viewport = <Map></Map>
+        }
         if(isSignup){
             viewport = <Signup ></Signup>;
         } 
