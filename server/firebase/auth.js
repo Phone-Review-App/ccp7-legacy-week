@@ -15,7 +15,6 @@ module.exports = {
   signUpWithEmailAndPassword: async function (email, password) {
     try {
       let newUser = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("🧲", newUser);
       return newUser.user;
     } catch (err) {
       console.log("ERROR:🌯 ", err);
@@ -26,7 +25,6 @@ module.exports = {
   loginWithEmailAndPassword: async function (email, password) {
     try {
       let user = await signInWithEmailAndPassword(auth, email, password);
-      console.log("🎂", user);
       return user;
     } catch (err) {
       console.log("ERROR:🔥 ", err);
@@ -35,11 +33,15 @@ module.exports = {
   },
 
   // signout
-  logoutUser: signOut(auth)
-  .then(() => {
-    console.log("User is signed out")
-  })
-  .catch(err => {
-    console.log("ERROR:🤒 ", err);
-  })
+  logoutUser: async function () {
+    try {
+      await signOut(auth).then(() => {
+        console.log("User is signed out")
+      })
+     
+    } catch (error) {
+      console.log("ERROR:🤒 ", error);
+    }
+  }
+  
 }

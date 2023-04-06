@@ -20,18 +20,18 @@ function setupServer() {
     res.send('world');
   });
 
-  app.post("/user/signup", async(req, res) => {
-    const { email, password } = req.body;
-    // console.log(req.body);
-    const newUser = await signUpWithEmailAndPassword(email, password);
-    // console.log(newUser);
+  // app.post("/user/signup", async(req, res) => {
+  //   const { email, password } = req.body;
+  //   // console.log(req.body);
+  //   const newUser = await signUpWithEmailAndPassword(email, password);
+  //   // console.log(newUser);
 
-    const uid = newUser.uid;
-    // console.log(uid);
-    await knex("users").insert({'email': email, 'UID': uid});
+  //   const uid = newUser.uid;
+  //   // console.log(uid);
+  //   await knex("users").insert({'email': email, 'UID': uid});
 
-    res.status(200).send(newUser);
-  });
+  //   res.status(200).send(newUser);
+  // });
 
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
