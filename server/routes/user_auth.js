@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { loginWithEmailAndPassword } = require("../firebase/auth");
 const usersModel = require("../model/users.model");
-const jwt = require("jsonwebtoken");
-const jwtConfig = require("../jwt_conf"); 
+
 
 router.post("/users/login", async(req, res) => {
   const { email, password } = req.body;
@@ -15,21 +14,9 @@ router.post("/users/login", async(req, res) => {
   } else {
     // login success
     // uuid from firebase
-    const uuid = user.user.reloadUserInfo.localId;
+    const uid = user.user.uid;
     // from postgresql
-    const userData = await usersModel.getUserData(uuid);
-    // to make a token to a client
-    const payload = { 
-      id: userData[0].id,
-    }
-    const token = await jwt.sign(payload, jwtConfig.jwt.secret, jwtConfig.jwt.options);
-    
-    console.log("this is token bro", token);
-
-    const body = {
-      token: token
-    }
-    res.status(200).send(body);
+    const userData = await usersModel.getUserData(uid);
   }
 });
 

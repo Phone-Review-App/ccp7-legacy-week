@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Login.css";
 import Signup from './Signup';
 
-import { Routes, Route, Link } from 'react-router-dom';
+// import { Routes, Route, Link } from 'react-router-dom';
 
 
 export default function Login(props) {
@@ -28,7 +28,7 @@ export default function Login(props) {
       setLoginUnsuccess(true);
     // user login is successful
     } else { 
-      document.cookie = `jwt_token=${loginResult.token}; max-age=3600;`;
+
       setLoginUnsuccess(false);
     }
   };
