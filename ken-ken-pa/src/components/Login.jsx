@@ -9,7 +9,7 @@ import Signup from './Signup';
 
 
 export default function Login(props) {
-  const {currentLocale } = props;
+  const { currentLocale, setCurrentUser, setCurrentView } = props;
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
   
@@ -23,20 +23,23 @@ export default function Login(props) {
 
      // (async) to send email and password to express endpoint /login
     const loginResult  = await tryLogin(userLoginInfo);
+    setCurrentUser(loginResult);
     // when user login is unsuccessful
     if (loginResult === false || loginResult === undefined) {
       setLoginUnsuccess(true);
     // user login is successful
     } else { 
-
       setLoginUnsuccess(false);
     }
+
+    setCurrentView('');
   };
 
   const tryLogin = async (userLoginInfo) => {
     try { 
       const isEnableToLogin = await axios.post("/users/login", userLoginInfo);
-      return isEnableToLogin.data;
+      console.log("🧬", isEnableToLogin.data);
+      return isEnableToLogin.data; // = UID
     } catch (error) {
       console.error(error);
     }

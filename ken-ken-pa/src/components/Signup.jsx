@@ -2,16 +2,12 @@ import React, {useState} from "react";
 import SubmitBtn from "./SubmitBtn";
 import UIText from "../data/locales.json";
 import axios from "axios";
-
 import "./Signup.css"
 
-const Signup = ( props ) => {
-    const {currentLocale} = props;
-  // login Success or error
-  const [isloginUnsuccess, setLoginUnsuccess] = useState();
 
-  const [isSignUp, setSignUp] = useState();
-  
+export default function Signup(props) {
+  const { currentLocale, setCurrentUser, setCurrentView } = props; 
+  const [isloginUnsuccess, setLoginUnsuccess] = useState();
   const handleSubmit = async (event) => {
     event.preventDefault();
     // inputs user email and password
@@ -22,20 +18,23 @@ const Signup = ( props ) => {
 
      // (async) to send email and password to express endpoint /login
     const loginResult  = await tryLogin(userLoginInfo);
-    // when user login is unsuccessful
     if (loginResult === false || loginResult === undefined) {
       setLoginUnsuccess(true);
     // user login is successful
     } else { 
-
       setLoginUnsuccess(false);
     }
+    setCurrentUser(loginResult);
+
+    setCurrentView('');
+
   };
 
   const tryLogin = async (userLoginInfo) => {
     try { 
-      const isEnableToLogin = await axios.post("/users/login", userLoginInfo);
-      return isEnableToLogin.data;
+      const isEnableToLogin = await axios.post("/users/signup", userLoginInfo);
+      console.log("🧿", isEnableToLogin.data);
+      return isEnableToLogin.data; // =UID
     } catch (error) {
       console.error(error);
     }
@@ -71,13 +70,4 @@ const Signup = ( props ) => {
        </div>
        </div>
       );
-
-
-
 };
-
-Signup.defaultProps = {
-    currentLocale:""
-}
-
-export default Signup;

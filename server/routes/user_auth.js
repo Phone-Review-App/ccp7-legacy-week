@@ -1,24 +1,44 @@
 const express = require("express");
 const router = express.Router();
-const { loginWithEmailAndPassword } = require("../firebase/auth");
+const { loginWithEmailAndPassword, signUpWithEmailAndPassword } = require("../firebase/auth");
 const usersModel = require("../model/users.model");
+const knex = require("../../db/knex");
 
 
-router.post("/users/login", async(req, res) => {
+router.post("/login", async(req, res) => {
   const { email, password } = req.body;
-  const user = await loginWithEmailAndPassword(email, password);
 
-  if (user === undefined) {
-    // login unsuccess status 401 Unauthorized
-    res.status(401).send(false);
-  } else {
-    // login success
-    // uuid from firebase
+  try {
+    const user = await loginWithEmailAndPassword(email, password);
+
     const uid = user.user.uid;
     // from postgresql
-    const userData = await usersModel.getUserData(uid);
+    // const userData = await usersModel.getUserData(uid);
+
+    res.status(200).send(uid)
+  } catch (error) {
+    res.status(401).send(false);
+    
+  }
+
+});
+
+router.post("/signup", async(req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const newUser = await signUpWithEmailAndPassword(email, password);
+ 
+    const uid = newUser.uid;
+
+    await knex("users").insert({'email': email, 'UID': uid});
+
+  
+    res.status(200).send(uid);
+    
+  } catch (error) {
+    res.status(400).send(false)
   }
 });
 
-// export 
 module.exports = router;
