@@ -13,7 +13,7 @@ export default function PrefectureMemories(props) {
         }</h1>
         
         <h2>{UIText["memories-of"][1][currentLocale]}</h2>
-        <p>Photo zone</p>
+        <p>{UIText["photo-zone"][currentLocale]}</p>
         
         <div className="side-menu">
             <button className="button" value="AddNewMemory" onClick={onClick} >

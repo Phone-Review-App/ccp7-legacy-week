@@ -8,7 +8,31 @@ import PopupMenu from "./components/PopupMenu";
 import PrefectureMemories from "./components/PrefectureMemories";
 import UIText from "./data/locales.json";
 import Navbar from "./components/Navbar";
-import Signup from "./components/Signup"
+import Signup from "./components/Signup";
+
+class TestingApp extends React.Component {
+  constructor (props) {
+    super(props);
+  this.state = {
+    component: "",
+    currentLocale:"",
+    currentView: () => {},
+    SelectedPrefecture: ()=>{},
+    onClick:() => {}
+  }
+
+  }
+  
+}
+
+const Views = [
+  {scene:"", },
+  {scene:"Memories", component:{Memories}},
+  {scene:"PrefectureMemories", component:{PrefectureMemories}},
+  {scene:"AddNewMemory", component:{AddNewMemory}},
+  {scene:"Login", component:{Login}},
+  {scene:"Signup", component:{Signup}}
+]
 
 
 export default function App() {
@@ -17,6 +41,15 @@ export default function App() {
   const [currentLocale, setCurrentLocale] = useState("en");
   const [selectedPrefecture, setSelectedPrefecture] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleCurrentView = () =>{
+    Views.filter((view) => {
+      // return (
+      //   {component currentLocale={currentLocale} onClick
+      // )
+    })
+  }
+
 
   const handlePopupMenu = (event) => {
     event.preventDefault();
@@ -58,9 +91,9 @@ export default function App() {
       <div className="main-area">
       <h1>{UIText.appName[currentLocale]}</h1>
       {
-        currentView === "Memories" ? (
+        (currentView === "Memories") ? (
           <Memories currentLocale={currentLocale} onClick={handleViewChange}></Memories>
-        ) : (
+         ) : (
           currentView === "PrefectureMemories" ? (
             <PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange}></PrefectureMemories>
           ) : (
@@ -71,7 +104,7 @@ export default function App() {
                 <Login currentLocale={currentLocale} onClick={handleViewChange}/>
               ) : (
                 ( currentView === "Signup" ? (
-                  <Signup currentLocale={currentLocale} />
+                  <Signup currentLocale={currentLocale} onClick={handleCurrentView}/>
                 ) : (
 
                 

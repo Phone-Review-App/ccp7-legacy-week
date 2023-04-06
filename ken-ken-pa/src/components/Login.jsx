@@ -4,6 +4,7 @@ import UIText from "../data/locales.json";
 import axios from "axios";
 import "./Login.css";
 import Signup from './Signup';
+import Navbar from './Navbar';
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ export default function Login(props) {
   const {currentLocale } = props;
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
+
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,11 +66,16 @@ export default function Login(props) {
             </label>
           </div>
           <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
-          {/* <Routes>
-            <Route exact path="/Signup" element={UIText["signup"][currentLocale]} />
-              
-          </Routes> */}
-          {/* <Link to="/Signup">{UIText["signup"][currentLocale]}</Link> */}
+          
+          {/* sign up button */}
+          <button 
+          value="Signup" 
+          // onClick={handleViewChange}
+          >
+            {UIText.signup[currentLocale]
+            }</button><br />
+          
+
           { isloginUnsuccess
             && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
           }
