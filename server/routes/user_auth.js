@@ -1,37 +1,44 @@
 const express = require("express");
 const router = express.Router();
-const { loginWithEmailAndPassword } = require("../firebase/auth");
+const { loginWithEmailAndPassword, signUpWithEmailAndPassword } = require("../firebase/auth");
 const usersModel = require("../model/users.model");
-const jwt = require("jsonwebtoken");
-const jwtConfig = require("../jwt_conf"); 
+const knex = require("../../db/knex");
 
-router.post("/users/login", async(req, res) => {
+
+router.post("/login", async(req, res) => {
   const { email, password } = req.body;
-  const user = await loginWithEmailAndPassword(email, password);
 
-  if (user === undefined) {
-    // login unsuccess status 401 Unauthorized
-    res.status(401).send(false);
-  } else {
-    // login success
-    // uuid from firebase
-    const uuid = user.user.reloadUserInfo.localId;
+  try {
+    const user = await loginWithEmailAndPassword(email, password);
+
+    const uid = user.user.uid;
     // from postgresql
-    const userData = await usersModel.getUserData(uuid);
-    // to make a token to a client
-    const payload = { 
-      id: userData[0].id,
-    }
-    const token = await jwt.sign(payload, jwtConfig.jwt.secret, jwtConfig.jwt.options);
-    
-    console.log("this is token bro", token);
+    // const userData = await usersModel.getUserData(uid);
 
-    const body = {
-      token: token
-    }
-    res.status(200).send(body);
+    res.status(200).send(uid)
+  } catch (error) {
+    res.status(401).send(false);
+    
+  }
+
+});
+
+router.post("/signup", async(req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const newUser = await signUpWithEmailAndPassword(email, password);
+ 
+    const uid = newUser.uid;
+
+    await knex("users").insert({'email': email, 'UID': uid});
+
+  
+    res.status(200).send(uid);
+    
+  } catch (error) {
+    res.status(400).send(false)
   }
 });
 
-// export 
 module.exports = router;

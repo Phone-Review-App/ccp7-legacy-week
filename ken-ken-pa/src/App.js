@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './App.css';
 import AddNewMemory from "./components/AddNewMemory";
 import Login from "./components/Login";
@@ -41,6 +41,8 @@ export default function App() {
   const [currentLocale, setCurrentLocale] = useState("en");
   const [selectedPrefecture, setSelectedPrefecture] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  // set current user to uid
+  const [currentUser, setCurrentUser] = useState("");
 
   const handleCurrentView = () =>{
     Views.filter((view) => {
@@ -55,6 +57,10 @@ export default function App() {
     event.preventDefault();
     setPopupMenu(true);
   }
+
+  useEffect(() => {
+    console.log(currentUser)
+  }, [currentUser])
 
   const handleViewChange = (event) => {
     // When user clicks button, currentView changes to value of button
@@ -101,10 +107,14 @@ export default function App() {
               <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}></AddNewMemory>
             ) : (
               currentView === "Login" ? (
-                <Login currentLocale={currentLocale} onClick={handleViewChange}/>
+                <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView}/>
               ) : (
                 ( currentView === "Signup" ? (
+<<<<<<< HEAD
                   <Signup currentLocale={currentLocale} onClick={handleCurrentView}/>
+=======
+                  <Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
+>>>>>>> 6157a2df9b62b4d53f06f20f414f061ff469b08d
                 ) : (
 
                 
