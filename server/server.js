@@ -26,6 +26,11 @@ function setupServer() {
 
   app.get('/api/memory/:prefectureId', async (req, res) => {
     // returns an array of objects that for the specific 
+    const prefectureId = req.params.prefectureId;
+    
+    const memories = await knex('photos').select('photo_key', 'description').where('prefecture_id', '=', prefectureId)
+
+    res.send(memories);
   });
 
   app.listen(PORT, () => {
