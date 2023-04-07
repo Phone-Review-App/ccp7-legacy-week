@@ -41,7 +41,7 @@ router.post("/signup", async(req, res) => {
   }
 });
 
-router.post('signout', async(req, res) => {
+router.post('logout', async(req, res) => {
   await logoutUser();
 
   res.send('');
