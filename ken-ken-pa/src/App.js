@@ -8,7 +8,7 @@ import PopupMenu from "./components/PopupMenu";
 import PrefectureMemories from "./components/PrefectureMemories";
 import UIText from "./data/locales.json";
 import Navbar from "./components/Navbar";
-import Signup from "./components/Signup"
+import Signup from "./components/Signup";
 
 
 export default function App() {
@@ -26,7 +26,12 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log(currentUser)
+    if (currentUser) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+    // console.log(currentUser)
   }, [currentUser])
 
   const handleViewChange = (event) => {
@@ -110,6 +115,9 @@ export default function App() {
           currentView={currentView}
           handleViewChange={handleViewChange}
           loggedIn={loggedIn}
+          setCurrentUser={setCurrentUser}
+          setLoggedIn={setLoggedIn}
+          setCurrentView={setCurrentView}
           >
           </Navbar>
       </div>
