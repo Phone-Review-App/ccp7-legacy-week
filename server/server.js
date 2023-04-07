@@ -47,6 +47,33 @@ function setupServer() {
 
   });
 
+  app.get('/api/mymemories', async (req, res) => {
+    // accepts a users post request for adding a new memory
+    const uid = req.body.uid;
+
+    const userIdObj = await knex('users')
+      .select('id')
+      .where('UID', '=', uid)
+      .first();
+
+    const userId = userIdObj['id']
+
+    console.log('🍎', userId)
+    try {
+      const mymemories = await knex('photos')
+        .innerJoin('prefectures', 'photos.prefecture_id', 'prefectures.id')
+        .select('name', 'description', 'photo_key')
+        .where('user_id', '=', userId);
+
+      console.log('🍒',mymemories)
+      res.send(mymemories);
+      
+    } catch (error) {
+      res.send([]);
+    }
+
+  });
+
   app.get('/api/memory/:prefectureId', async (req, res) => {
     // returns an array of objects that for the specific 
     const prefectureId = req.params.prefectureId;
