@@ -1,8 +1,15 @@
-import { React } from "react";
+import React, { useState, useEffect } from "react";
 import UIText from "../data/locales.json";
 
 export default function PrefectureMemories(props) {
     const { onClick, currentLocale, selectedPrefecture } = props;
+    const [userMemories, setUserMemories] = useState([]);
+
+    useEffect(() => {
+      // make axios request to express `/api/memory` to get the memories for that location
+      //    you will need to send in the selectedPrefecture in your request body
+    })
+
 
    return(
     <div className="memories-container">
@@ -14,6 +21,9 @@ export default function PrefectureMemories(props) {
         
         <h2>{UIText["memories-of"][1][currentLocale]}</h2>
         <p>Photo zone</p>
+        <div className="photos-grid">
+          {/* add photos here using map on userMemories */}
+        </div>
         
         <div className="side-menu">
             <button className="button" value="AddNewMemory" onClick={onClick} >
