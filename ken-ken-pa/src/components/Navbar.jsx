@@ -23,7 +23,14 @@ export default function Navbar(props) {
                   { UIText["add-memory"][currentLocale] }
                 </button>
                 <button value="Logout" 
-                onClick={ handleLogout } className="logout-button">{UIText.logout[currentLocale]}</button>
+                  onClick={ handleLogout } className="logout-button">{UIText.logout[currentLocale]}
+                </button>
+                <button 
+                  className="my-memories-button"
+                  value="Memories"
+                  onClick={handleViewChange}>
+                  { UIText["my-memories"][0][currentLocale] }
+                </button>
               </>
             ) : <>
             <button className="login-button" value="Login" onClick={handleViewChange}>{UIText.login[currentLocale]}</button>
@@ -39,16 +46,6 @@ export default function Navbar(props) {
             <button 
             className="home-button"
             onClick={goToHome}>{UIText.home[currentLocale]}
-            </button>
-        ) : ("")}
-
-        { currentView === "" || currentView === "PrefectureMemories" ? (
-            <button 
-            className="my-memories-button"
-            value="Memories"
-            onClick={handleViewChange}
-            >
-            { UIText["my-memories"][0][currentLocale] }
             </button>
         ) : ("")}
 
