@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { loginWithEmailAndPassword, signUpWithEmailAndPassword } = require("../firebase/auth");
+const { loginWithEmailAndPassword, signUpWithEmailAndPassword, logoutUser } = require("../firebase/auth");
 const usersModel = require("../model/users.model");
 const knex = require("../../db/knex");
 
@@ -40,5 +40,11 @@ router.post("/signup", async(req, res) => {
     res.status(400).send(false)
   }
 });
+
+router.post('logout', async(req, res) => {
+  await logoutUser();
+
+  res.send('');
+})
 
 module.exports = router;

@@ -28,6 +28,13 @@ export default function App() {
   useEffect(() => {
     console.log("🥶",currentUser, "😃", currentView);
    
+  
+    if (currentUser) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+    // console.log(currentUser)
   }, [currentUser, currentView])
 
   const handleViewChange = (event) => {
@@ -111,6 +118,9 @@ export default function App() {
           currentView={currentView}
           handleViewChange={handleViewChange}
           loggedIn={loggedIn}
+          setCurrentUser={setCurrentUser}
+          setLoggedIn={setLoggedIn}
+          setCurrentView={setCurrentView}
           >
           </Navbar>
       </div>
