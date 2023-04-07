@@ -14,8 +14,8 @@
 }
 
 .photo {
-  height: 140px;
-  width: 200px;
+  height: 200px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
