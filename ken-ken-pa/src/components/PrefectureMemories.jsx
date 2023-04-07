@@ -35,7 +35,7 @@ export default function PrefectureMemories(props) {
             return (
               <div className="photo">
               <img></img>
-              <p>Description</p>
+              <p>{photo.description}</p>
               </div>
             )
           })
