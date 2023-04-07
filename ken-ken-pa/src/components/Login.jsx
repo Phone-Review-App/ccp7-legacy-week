@@ -3,8 +3,8 @@ import SubmitBtn from "./SubmitBtn";
 import UIText from "../data/locales.json";
 import axios from "axios";
 import "./Login.css";
-import Signup from './Signup';
-import Navbar from './Navbar';
+// import Signup from './Signup';
+// import Navbar from './Navbar';
 
 // import { Routes, Route, Link } from 'react-router-dom';
 
@@ -16,17 +16,15 @@ export default function Login(props) {
     console.log("🦊",changeState)
   }, [changeState])
 
-  const handleSingup = (event) =>{
-    event.preventDefault();
+  const handleSingup = () =>{
+    //event.preventDefault();
     setCurrentView("Signup");
-    triggerChangeState(true);
+    triggerChangeState(!changeState);
   }
 
   const [changeState, triggerChangeState] = useState(false);
   
-  const handleChangeState = () => {
-    triggerChangeState(!changeState);
-  } 
+  
 
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
@@ -92,7 +90,7 @@ export default function Login(props) {
           {/* sign up button */}
           <button 
           value="Signup" 
-          onClick={()=> {handleSingup; handleChangeState }}
+          onClick={handleSingup}
           >
             {UIText.signup[currentLocale]
             }</button><br />

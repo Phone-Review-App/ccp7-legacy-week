@@ -27,7 +27,9 @@ export default function App() {
 
   useEffect(() => {
     console.log("🥶",currentUser, "😃", currentView);
-   
+    // if (currentView === "Memories") {
+    //   setSelectedPrefecture("");
+    // }
   
     if (currentUser) {
       setLoggedIn(true);
@@ -40,9 +42,9 @@ export default function App() {
   const handleViewChange = (event) => {
     // When user clicks button, currentView changes to value of button
     event.preventDefault();
-    if (currentView === "Memories") {
-      setSelectedPrefecture("");
-    }
+    // if (currentView === "Memories") {
+    //   setSelectedPrefecture("");
+    // }
     setCurrentView(event.target.value);
   }
 
@@ -65,50 +67,44 @@ export default function App() {
   const gradientStyle = {
    background: 'linear-gradient(to bottom, #8AB4F8, lightblue)',
   }
+  
+ // const CurrentViewPortTrigger = () => {
+    let viewport = null;
+    if(currentView === ""){
+      viewport = <><Map handlePopupMenu={handlePopupMenu}
+      setSelectedPrefecture={setSelectedPrefecture} /></>;
+      if(isShown){
+        viewport += <><PopupMenu currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} /></>;
+      } else {
+        <><div></div></>
+      }
+    } else if (currentView === "Signup"){
+        viewport = <><Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} /></>;
+    } else if (currentView === "Login"){
+        viewport = <><Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} /></>;
+    } else if (currentView === "AddNewMemory"){
+        viewport = <><AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}/></>;
+    } else if (currentView === "PrefectureMemories"){
+        viewport = <><PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} /></>;
+    } else if (currentView === "Memories"){
+      setSelectedPrefecture("");
+      viewport = <><Memories currentLocale={currentLocale} onClick={handleViewChange} /></>;
+    } else {
+      viewport = <><div></div></>;
+    } 
+    console.log("🙂",viewport);
+    //return ();
+  //}
 
 
   return (
     <div className="App" style={gradientStyle}>
       <div className="main-area">
       <h1>{UIText.appName[currentLocale]}</h1>
-      {
-        (currentView === "Memories") ? (
-          <Memories currentLocale={currentLocale} onClick={handleViewChange}></Memories>
-        ) : (
-          currentView === "PrefectureMemories" ? (
-            <PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange}></PrefectureMemories>
-          ) : (
-            currentView === "AddNewMemory" ? (
-              <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}></AddNewMemory>
-            ) : (
-              currentView === "Login" ? (
-                <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
-              ) : (
-                ( currentView === "Signup" ? (
-                  <Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
-                ) : (
-
-                
-                <div>
-                  <Map 
-                  handlePopupMenu={handlePopupMenu}
-                  setSelectedPrefecture={setSelectedPrefecture}></Map>
-
-                  {isShown ? (
-                    <PopupMenu currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} ></PopupMenu>
-                  ) : (
-                    <div></div>
-                  )}
-                </div>
-                )
-                )
-                )
-                )
-                )
-        )
-                  }
+      <>{viewport}</>
+      
       </div>
-
+      { /* Navbar */}
       <div className="navbar-container">
           <Navbar
           currentLocale={currentLocale}

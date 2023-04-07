@@ -22,12 +22,15 @@ export default function Navbar(props) {
                 <button className="button" value="AddNewMemory" onClick={handleViewChange} >
                   { UIText["add-memory"][currentLocale] }
                 </button>
-                <button value="Logout" 
-                onClick={ handleLogout } className="logout-button">{UIText.logout[currentLocale]}</button>
+                <button className="logout-button" value="Logout" 
+                onClick={ handleLogout } >{UIText.logout[currentLocale]}</button>
+                {"🤺"}
               </>
             ) : <>
             <button className="login-button" value="Login" onClick={handleViewChange}>{UIText.login[currentLocale]}</button>
-            <button className="login-button" value="Signup" onClick={handleViewChange}>{UIText.signup[currentLocale]}</button>
+            { currentView === "Signin" ? <><button className="login-button" value="Signup" onClick={handleViewChange}>{UIText.signup[currentLocale]}</button> {"😛"} </>: 
+            <><div></div> </>}
+            {"👊"}
             </>
       )}
 
@@ -40,7 +43,7 @@ export default function Navbar(props) {
             {"💋"}
            {currentView === "Login" ? <button className="login-button" value="Signup" onClick={handleViewChange}>{UIText.signup[currentLocale]}</button> : <div></div>}
             <button 
-            className="home-button"
+            className="home-button" value="Home"
             onClick={goToHome}>{UIText.home[currentLocale]}
             </button>
             </>
@@ -59,7 +62,7 @@ export default function Navbar(props) {
             </button>
             </>
             
-        ) : ("🥰")}
+        ) : ("🥰" + "Maintaining")}
 
         <div className="language-button-container">
             <button
