@@ -7,9 +7,10 @@ export default function PrefectureMemories(props) {
     const [userMemories, setUserMemories] = useState([]);
 
     useEffect(() => {
-      // make axios request to express `/api/memory` to get the memories for that location
-      // you will need to send in the selectedPrefecture in your request body
-    });
+      // make axios request to express `/api/memory/:prefectureId` to get the memories for that location
+      //    you will need to send in the selectedPrefecture as a query param
+    })
+
 
    return(
     <div className="memories-container">

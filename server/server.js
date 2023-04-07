@@ -22,13 +22,65 @@ function setupServer() {
 
   app.post('/api/memory', async (req, res) => {
     // accepts a users post request for adding a new memory
+    const newMemory = req.body;
+
+    const userIdObj = await knex('users')
+      .select('id')
+      .where('UID', '=', newMemory.uid)
+      .first();
+
+    const userId = userIdObj['id']
+
+    const submissionObject = {
+      user_id: userId,
+      prefecture_id: newMemory.prefecture_id,
+      photo_key: newMemory.photo_key,
+      description: newMemory.description
+    }
+    try {
+      await knex('photos').insert(submissionObject)
+      res.send(true);
+      
+    } catch (error) {
+      res.send(false);
+    }
+
   });
 
-  app.get('/api/memory', async (req, res) => {
-    // returns an array of objects that for the specific prefecture
-    console.log("🙀", req.body);
-    const memories = await [];
-    res.status(200).send(memories);
+  app.get('/api/mymemories', async (req, res) => {
+    // accepts a users post request for adding a new memory
+    const uid = req.body.uid;
+
+    const userIdObj = await knex('users')
+      .select('id')
+      .where('UID', '=', uid)
+      .first();
+
+    const userId = userIdObj['id']
+
+    console.log('🍎', userId)
+    try {
+      const mymemories = await knex('photos')
+        .innerJoin('prefectures', 'photos.prefecture_id', 'prefectures.id')
+        .select('name', 'description', 'photo_key')
+        .where('user_id', '=', userId);
+
+      console.log('🍒',mymemories)
+      res.send(mymemories);
+      
+    } catch (error) {
+      res.send([]);
+    }
+
+  });
+
+  app.get('/api/memory/:prefectureId', async (req, res) => {
+    // returns an array of objects that for the specific 
+    const prefectureId = req.params.prefectureId;
+    
+    const memories = await knex('photos').select('photo_key', 'description').where('prefecture_id', '=', prefectureId)
+
+    res.send(memories);
   });
 
  app.listen(PORT, () => {
