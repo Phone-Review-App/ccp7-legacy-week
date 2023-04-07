@@ -49,16 +49,6 @@ export default function Navbar(props) {
             </button>
         ) : ("")}
 
-        { currentView === "PrefectureMemories" ? (
-            <button 
-            className="my-memories-button"
-            value="Memories"
-            onClick={handleViewChange}
-            >
-            { UIText["my-memories"][0][currentLocale] }
-            </button>
-        ) : ("")}
-
         <div className="language-button-container">
             <button
             className="language-button"
