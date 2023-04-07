@@ -9,7 +9,7 @@ import PrefectureMemories from "./components/PrefectureMemories";
 import UIText from "./data/locales.json";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
-import CurrentViewport from "./components/CurrentViewport";
+// import CurrentViewPortTrigger from "./components/CurrentViewport";
 
 export default function App() {
   const [isShown, setPopupMenu] = useState(false);
@@ -26,25 +26,23 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log("🥶",currentUser, "😃", currentView);
-    // if (currentView === "Memories") {
-    //   setSelectedPrefecture("");
-    // }
+    console.log("🥶",currentUser, "😃", currentView, "🤡", isShown);
   
+    CurrentViewPortTrigger(currentView);
     if (currentUser) {
       setLoggedIn(true);
     } else {
       setLoggedIn(false);
     }
     // console.log(currentUser)
-  }, [currentUser, currentView])
+  }, [currentUser, currentView, isShown])
 
   const handleViewChange = (event) => {
     // When user clicks button, currentView changes to value of button
     event.preventDefault();
-    // if (currentView === "Memories") {
-    //   setSelectedPrefecture("");
-    // }
+    if (currentView === "Memories") {
+      setSelectedPrefecture("");
+    }
     setCurrentView(event.target.value);
   }
 
@@ -68,42 +66,59 @@ export default function App() {
    background: 'linear-gradient(to bottom, #8AB4F8, lightblue)',
   }
   
- // const CurrentViewPortTrigger = () => {
-    let viewport = null;
-    if(currentView === ""){
-      viewport = <><Map handlePopupMenu={handlePopupMenu}
-      setSelectedPrefecture={setSelectedPrefecture} /></>;
-      if(isShown){
-        viewport += <><PopupMenu currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} /></>;
-      } else {
-        <><div></div></>
-      }
-    } else if (currentView === "Signup"){
-        viewport = <><Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} /></>;
-    } else if (currentView === "Login"){
-        viewport = <><Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} /></>;
-    } else if (currentView === "AddNewMemory"){
-        viewport = <><AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}/></>;
-    } else if (currentView === "PrefectureMemories"){
-        viewport = <><PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} /></>;
-    } else if (currentView === "Memories"){
-      setSelectedPrefecture("");
-      viewport = <><Memories currentLocale={currentLocale} onClick={handleViewChange} /></>;
-    } else {
-      viewport = <><div></div></>;
-    } 
-    console.log("🙂",viewport);
-    //return ();
-  //}
+const CurrentViewPortTrigger = () => {
+  if (currentView === "Signup"){
+    setCurrentView("Signup");
+    return (
+    <Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
+    );
+  } 
+  if (currentView === "Login"){
+    setCurrentView("Login");
+    return (
+      <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
+      );
+  } 
+  if (currentView === "AddNewMemory"){
+    setCurrentView("AddNewMemory");
+    return ( 
+      <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}/>
+    );
+  }  
+  if (currentView === "PrefectureMemories"){
+    setCurrentView("PrefectureMemories")
+    return ( 
+      <PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} />
+    );
+  } 
+  if (currentView === "Memories"){
+    setCurrentView("Memories");
+    setSelectedPrefecture("");
+    return ( 
+      <Memories currentLocale={currentLocale} onClick={handleViewChange} />);
+  } 
+  if(currentView === ""){
+    setCurrentView("");
+    return (
+      <div>
+        <Map handlePopupMenu={handlePopupMenu} setSelectedPrefecture={setSelectedPrefecture} />
+        {isShown ? <PopupMenu currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} /> : <div></div>};
+      </div>
+    )
+  }
+    return null;
+  }
+
 
 
   return (
     <div className="App" style={gradientStyle}>
       <div className="main-area">
       <h1>{UIText.appName[currentLocale]}</h1>
-      <>{viewport}</>
       
+      <CurrentViewPortTrigger />
       </div>
+
       { /* Navbar */}
       <div className="navbar-container">
           <Navbar
