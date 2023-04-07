@@ -26,7 +26,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log("🥶",currentUser, currentView)
+    console.log("🥶",currentUser, "😃", currentView);
+   
   }, [currentUser, currentView])
 
   const handleViewChange = (event) => {

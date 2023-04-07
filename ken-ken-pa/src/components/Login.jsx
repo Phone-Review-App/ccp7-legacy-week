@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import SubmitBtn from "./SubmitBtn";
 import UIText from "../data/locales.json";
 import axios from "axios";
@@ -11,14 +11,29 @@ import Navbar from './Navbar';
 
 export default function Login(props) {
   const { currentLocale, setCurrentUser, setCurrentView } = props;
+  
+  useEffect(()=>{
+    console.log("🦊",changeState)
+  }, [changeState])
 
-  const handleViewChange = (event) =>{
+  const handleSingup = (event) =>{
     event.preventDefault();
-    setCurrentView(event.target.value);
+    setCurrentView("Signup");
+    triggerChangeState(true);
   }
+
+  const [changeState, triggerChangeState] = useState(false);
+  
+  const handleChangeState = () => {
+    triggerChangeState(!changeState);
+  } 
+
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
   
+  
+  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     // inputs user email and password
@@ -77,7 +92,7 @@ export default function Login(props) {
           {/* sign up button */}
           <button 
           value="Signup" 
-          onClick={handleViewChange}
+          onClick={()=> {handleSingup; handleChangeState }}
           >
             {UIText.signup[currentLocale]
             }</button><br />
