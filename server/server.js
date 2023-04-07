@@ -75,15 +75,15 @@ function setupServer() {
   });
 
   app.get('/api/memory/:prefectureId', async (req, res) => {
-    // returns an array of objects that for the specific 
+    // returns an array of objects that for the specified prefecture
     const prefectureId = req.params.prefectureId;
-    
+    // console.log("🦷", prefectureId);
     const memories = await knex('photos').select('photo_key', 'description').where('prefecture_id', '=', prefectureId)
 
     res.send(memories);
   });
 
-  app.listen(PORT, () => {
+ app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
   });
    
