@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect} from "react";
 import './App.css';
 import AddNewMemory from "./components/AddNewMemory";
 import Login from "./components/Login";
@@ -116,7 +116,15 @@ const CurrentViewPortTrigger = () => {
       <div className="main-area">
       <h1>{UIText.appName[currentLocale]}</h1>
       
-      <CurrentViewPortTrigger />
+      <CurrentViewPortTrigger 
+          currentLocale={currentLocale}
+          
+          currentView={currentView}
+          handleViewChange={handleViewChange}
+          loggedIn={loggedIn}
+          setCurrentUser={setCurrentUser}
+          setLoggedIn={setLoggedIn}
+          setCurrentView={setCurrentView}/>
       </div>
 
       { /* Navbar */}

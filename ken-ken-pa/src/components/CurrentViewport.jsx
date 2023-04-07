@@ -14,18 +14,18 @@ import './CurrentViewport.css'
 
 // If - else statement 
 
-export const CurrentViewPortTrigger = ({ currentLocale }) => {
-  const [isShown, setPopupMenu] = useState(false);
-  const [currentView, setCurrentView] = useState("");
-  const [currentLocale, setCurrentLocale] = useState("en");
-  const [selectedPrefecture, setSelectedPrefecture] = useState("");
+export const CurrentViewPortTrigger = ({ currentLocale, currentView, HandleViewChange, loggedIn,setCurrentUser, setLoggedIn, setCurrentView, currentUser }) => {
+  // const [isShown, setPopupMenu] = useState(false);
+  // const [currentView, setCurrentView] = useState("");
+  // const [currentLocale, setCurrentLocale] = useState("en");
+  // const [selectedPrefecture, setSelectedPrefecture] = useState("");
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
   // set current user to uid
-  const [currentUser, setCurrentUser] = useState("");
+  // const [currentUser, setCurrentUser] = useState("");
   
   useEffect(() => {
-    console.log("🥶",currentUser, "😃", currentView);
+    console.log("🥶",currentUser, "😃", currentView, "🤡", isShown);
   
     CurrentViewPortTrigger(currentView);
     if (currentUser) {
@@ -33,7 +33,7 @@ export const CurrentViewPortTrigger = ({ currentLocale }) => {
     } else {
       setLoggedIn(false);
     }
-  }, [currentUser, currentView])
+  }, [currentUser, currentView, isShown])
 
   const handlePopupMenu = (event) => {
     event.preventDefault();
