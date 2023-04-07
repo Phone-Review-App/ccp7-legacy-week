@@ -24,8 +24,8 @@ function setupServer() {
     // accepts a users post request for adding a new memory
   });
 
-  app.get('/api/memory', async (req, res) => {
-    // returns an array of objects that for the specific  
+  app.get('/api/memory/:prefectureId', async (req, res) => {
+    // returns an array of objects that for the specific 
   });
 
   app.listen(PORT, () => {
