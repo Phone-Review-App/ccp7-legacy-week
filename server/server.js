@@ -20,6 +20,14 @@ function setupServer() {
     res.send('world');
   });
 
+  app.post('/api/memory', async (req, res) => {
+
+  });
+
+  app.get('/api/memory', async (req, res) => {
+
+  });
+
   // app.post("/user/signup", async(req, res) => {
   //   const { email, password } = req.body;
   //   // console.log(req.body);
