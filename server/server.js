@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 4000;
-const { signUpWithEmailAndPassword } = require("./firebase/auth")
+// const { signUpWithEmailAndPassword } = require("./firebase/auth")
 const knex = require("../db/knex");
 
 // routes
@@ -20,20 +20,18 @@ function setupServer() {
     res.send('world');
   });
 
-  // app.post("/user/signup", async(req, res) => {
-  //   const { email, password } = req.body;
-  //   // console.log(req.body);
-  //   const newUser = await signUpWithEmailAndPassword(email, password);
-  //   // console.log(newUser);
+  app.post('/api/memory', async (req, res) => {
+    // accepts a users post request for adding a new memory
+  });
 
-  //   const uid = newUser.uid;
-  //   // console.log(uid);
-  //   await knex("users").insert({'email': email, 'UID': uid});
+  app.get('/api/memory', async (req, res) => {
+    // returns an array of objects that for the specific prefecture
+    console.log("🙀", req.body);
+    const memories = await [];
+    res.status(200).send(memories);
+  });
 
-  //   res.status(200).send(newUser);
-  // });
-
-  app.listen(PORT, () => {
+ app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
   });
    
