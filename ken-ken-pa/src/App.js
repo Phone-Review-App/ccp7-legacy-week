@@ -68,37 +68,41 @@ export default function App() {
   
 const CurrentViewPortTrigger = () => {
   if (currentView === "Signup"){
-    setCurrentView("Signup");
+    //setCurrentView("Signup");
     return (
     <Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
     );
   } 
   if (currentView === "Login"){
-    setCurrentView("Login");
+    //setCurrentView("Login");
     return (
       <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
       );
   } 
   if (currentView === "AddNewMemory"){
-    setCurrentView("AddNewMemory");
+    //setCurrentView("AddNewMemory");
     return ( 
-      <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}/>
+      <AddNewMemory 
+        currentUser={currentUser} 
+        currentLocale={currentLocale} 
+        selectedPrefecture={selectedPrefecture} 
+        setSelectedPrefecture={setSelectedPrefecture}/>
     );
   }  
   if (currentView === "PrefectureMemories"){
-    setCurrentView("PrefectureMemories")
+    //setCurrentView("PrefectureMemories")
     return ( 
       <PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} />
     );
   } 
   if (currentView === "Memories"){
-    setCurrentView("Memories");
+    //setCurrentView("Memories");
     setSelectedPrefecture("");
     return ( 
       <Memories currentLocale={currentLocale} onClick={handleViewChange} />);
   } 
   if(currentView === ""){
-    setCurrentView("");
+    //setCurrentView("");
     return (
       <div>
         <Map handlePopupMenu={handlePopupMenu} setSelectedPrefecture={setSelectedPrefecture} />

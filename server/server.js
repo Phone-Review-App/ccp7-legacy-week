@@ -24,6 +24,15 @@ function setupServer() {
     // accepts a users post request for adding a new memory
     const newMemory = req.body;
 
+/*
+{
+    uid: currentUser,
+    prefecture_id: (prefecture of the memory integer),
+    photo_key: "", // This would be the link to the image, but for now just use an empty array
+    description: (the users entered memory test)
+}
+*/
+
     const userIdObj = await knex('users')
       .select('id')
       .where('UID', '=', newMemory.uid)
