@@ -34,8 +34,8 @@ export default function Navbar(props) {
               </>
             ) : <>
             <button className="login-button" value="Login" onClick={handleViewChange}>{UIText.login[currentLocale]}</button>
-         <><button className="login-button" value="Signup" onClick={handleViewChange}>{UIText.signup[currentLocale]}</button> {"😛"} </>
-            {"👊"}
+         <><button className="login-button" value="Signup" onClick={handleViewChange}>{UIText.signup[currentLocale]}</button> </>
+            
             </>
       )}
 
@@ -45,7 +45,7 @@ export default function Navbar(props) {
           (!loggedIn && currentView !== "")
           ? (
             <>
-            {"💋"}
+            
            {currentView === "Login" ? <button className="login-button" value="Signup" onClick={handleViewChange}>{UIText.signup[currentLocale]}</button> : <div></div>}
             <button 
             className="home-button"
@@ -53,7 +53,7 @@ export default function Navbar(props) {
             </button>
             </>
             
-        ) : ("👽")}
+        ) : ("")}
 
         <div className="language-button-container">
             <button
