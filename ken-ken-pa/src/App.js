@@ -79,7 +79,11 @@ const CurrentViewPortTrigger = () => {
   } 
   if (currentView === "AddNewMemory"){
     return ( 
-      <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}/>
+      <AddNewMemory 
+        currentUser={currentUser} 
+        currentLocale={currentLocale} 
+        selectedPrefecture={selectedPrefecture} 
+        setSelectedPrefecture={setSelectedPrefecture}/>
     );
   }  
   if (currentView === "PrefectureMemories"){
