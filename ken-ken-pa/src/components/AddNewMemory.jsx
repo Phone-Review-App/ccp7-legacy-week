@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import UIText from "../data/locales.json"
 import SubmitBtn from "./SubmitBtn";
 import "./AddNewMemory.css";
+import axios from "axios";
 
 export default function AddNewMemory(props) {
     const { currentLocale, selectedPrefecture, setSelectedPrefecture, currentUser } = props;
@@ -39,7 +40,7 @@ export default function AddNewMemory(props) {
     description: (the users entered memory test)
 }
 */
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
 
       //setCurrentText(event.target.value)
@@ -55,11 +56,13 @@ export default function AddNewMemory(props) {
           uid: currentUser,
           prefecture_id: Number(currentPrefecture),
           photo_key: "",
-          description: currentText
-        }
+          description: currentText,
+      }
 
-        
-        
+      console.log(submissionBody);
+
+      const response = await axios.post('/api/memory', submissionBody)
+      console.log('😍',response.data)
         
     }
 

@@ -23,20 +23,14 @@ function setupServer() {
   app.post('/api/memory', async (req, res) => {
     // accepts a users post request for adding a new memory
     const newMemory = req.body;
-
-/*
-{
-    uid: currentUser,
-    prefecture_id: (prefecture of the memory integer),
-    photo_key: "", // This would be the link to the image, but for now just use an empty array
-    description: (the users entered memory test)
-}
-*/
-
+    console.log(newMemory)
+//vhasdbiSaoisdcLKJDHFEf83147
     const userIdObj = await knex('users')
       .select('id')
       .where('UID', '=', newMemory.uid)
       .first();
+
+      //4
 
     const userId = userIdObj['id']
 
@@ -46,11 +40,14 @@ function setupServer() {
       photo_key: newMemory.photo_key,
       description: newMemory.description
     }
+
+    console.log('🤢',submissionObject)
     try {
       await knex('photos').insert(submissionObject)
       res.send(true);
       
     } catch (error) {
+      console.log(error)
       res.send(false);
     }
 
