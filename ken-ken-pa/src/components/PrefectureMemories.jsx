@@ -8,15 +8,13 @@ export default function PrefectureMemories(props) {
     const [userMemories, setUserMemories] = useState([]);
 
     useEffect(() => {
-      // make axios request to express `/api/memory/:prefectureId` to get the memories for that location
-      // you will need to send in the selectedPrefecture as a query param
       handleUserMemories();
     }, []);
 
     async function handleUserMemories() {
       const fetchedMemory = await axios.get(`/api/memory/${selectedPrefecture}`);
       setUserMemories(fetchedMemory.data);
-      console.log("🦾", fetchedMemory.data);
+      // console.log("🦾", fetchedMemory.data);
     }
 
 

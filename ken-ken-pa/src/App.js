@@ -26,7 +26,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log("🥶",currentUser, "😃", currentView, "🤡", isShown);
+    // console.log("🥶",currentUser, "😃", currentView, "🤡", isShown);
   
     CurrentViewPortTrigger(currentView);
     if (currentUser) {
@@ -68,37 +68,34 @@ export default function App() {
   
 const CurrentViewPortTrigger = () => {
   if (currentView === "Signup"){
-    setCurrentView("Signup");
     return (
     <Signup currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
     );
   } 
   if (currentView === "Login"){
-    setCurrentView("Login");
     return (
       <Login currentLocale={currentLocale} setCurrentUser={setCurrentUser} setCurrentView={setCurrentView} />
       );
   } 
   if (currentView === "AddNewMemory"){
-    setCurrentView("AddNewMemory");
     return ( 
       <AddNewMemory currentLocale={currentLocale} selectedPrefecture={selectedPrefecture}/>
     );
   }  
   if (currentView === "PrefectureMemories"){
-    setCurrentView("PrefectureMemories")
+
     return ( 
       <PrefectureMemories currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} />
     );
   } 
   if (currentView === "Memories"){
-    setCurrentView("Memories");
+
     setSelectedPrefecture("");
     return ( 
-      <Memories currentLocale={currentLocale} onClick={handleViewChange} />);
+      <Memories currentLocale={currentLocale} onClick={handleViewChange} currentUser={currentUser}/>);
   } 
   if(currentView === ""){
-    setCurrentView("");
+
     return (
       <div>
         <Map handlePopupMenu={handlePopupMenu} setSelectedPrefecture={setSelectedPrefecture} />

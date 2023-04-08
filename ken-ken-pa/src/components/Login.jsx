@@ -11,6 +11,7 @@ import "./Login.css";
 
 export default function Login(props) {
   const { currentLocale, setCurrentUser, setCurrentView } = props;
+  const [changeState, triggerChangeState] = useState(false);
   
   useEffect(()=>{
     console.log("🦊",changeState)
@@ -22,7 +23,7 @@ export default function Login(props) {
     triggerChangeState(!changeState);
   }
 
-  const [changeState, triggerChangeState] = useState(false);
+
   
   
 
