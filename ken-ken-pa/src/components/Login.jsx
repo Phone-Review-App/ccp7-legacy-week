@@ -1,18 +1,37 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import SubmitBtn from "./SubmitBtn";
 import UIText from "../data/locales.json";
 import axios from "axios";
 import "./Login.css";
-import Signup from './Signup';
+// import Signup from './Signup';
+// import Navbar from './Navbar';
 
 // import { Routes, Route, Link } from 'react-router-dom';
 
 
 export default function Login(props) {
   const { currentLocale, setCurrentUser, setCurrentView } = props;
+  
+  useEffect(()=>{
+    console.log("🦊",changeState)
+  }, [changeState])
+
+  const handleSingup = () =>{
+    //event.preventDefault();
+    setCurrentView("Signup");
+    triggerChangeState(!changeState);
+  }
+
+  const [changeState, triggerChangeState] = useState(false);
+  
+  
+
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
   
+  
+  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     // inputs user email and password
@@ -67,11 +86,16 @@ export default function Login(props) {
             </label>
           </div>
           <p id="sign-up">{UIText["signup-prompt"][currentLocale]}</p>
-          {/* <Routes>
-            <Route exact path="/Signup" element={UIText["signup"][currentLocale]} />
-              
-          </Routes> */}
-          {/* <Link to="/Signup">{UIText["signup"][currentLocale]}</Link> */}
+          
+          {/* sign up button */}
+          <button 
+          value="Signup" 
+          onClick={handleSingup}
+          >
+            {UIText.signup[currentLocale]
+            }</button><br />
+          
+
           { isloginUnsuccess
             && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
           }
