@@ -47,10 +47,10 @@ function setupServer() {
 
   });
 
-  app.get('/api/mymemories', async (req, res) => {
+  app.get('/api/mymemories/:uid', async (req, res) => {
     // accepts a users post request for adding a new memory
-    const uid = req.body.uid;
-
+    const uid = req.params.uid;
+    console.log("🤌", uid);
     const userIdObj = await knex('users')
       .select('id')
       .where('UID', '=', uid)
