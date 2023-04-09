@@ -27,7 +27,7 @@ export default function App() {
 
   useEffect(() => {
     // console.log("🥶",currentUser, "😃", currentView, "🤡", isShown);
-  
+    console.log("🔑",loggedIn)
     CurrentViewPortTrigger(currentView);
     if (currentUser) {
       setLoggedIn(true);
@@ -35,7 +35,7 @@ export default function App() {
       setLoggedIn(false);
     }
     // console.log(currentUser)
-  }, [currentUser, currentView, isShown])
+  }, [currentUser, currentView, isShown, loggedIn])
 
   const handleViewChange = (event) => {
     // When user clicks button, currentView changes to value of button
@@ -43,7 +43,13 @@ export default function App() {
     if (currentView === "Memories") {
       setSelectedPrefecture("");
     }
-    setCurrentView(event.target.value);
+    // Fixme:How to make user go to login if user try to add New Memory w/o loggedIn 
+    // if(!loggedIn){
+    //   setCurrentView("Login");
+    // } else {
+      setCurrentView(event.target.value);
+    // }
+    
   }
 
   const changeLangToJa = (event) => {
@@ -103,7 +109,7 @@ const CurrentViewPortTrigger = () => {
     return (
       <div>
         <Map handlePopupMenu={handlePopupMenu} setSelectedPrefecture={setSelectedPrefecture} />
-        {isShown ? <PopupMenu currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} /> : <div></div>};
+        {isShown ? <PopupMenu currentLocale={currentLocale} selectedPrefecture={selectedPrefecture} onClick={handleViewChange} /> : null}
       </div>
     )
   }

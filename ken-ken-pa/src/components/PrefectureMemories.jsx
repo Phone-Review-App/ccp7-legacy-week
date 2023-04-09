@@ -29,9 +29,9 @@ export default function PrefectureMemories(props) {
       <h2>{UIText["memories-of"][1][currentLocale]}</h2>
       <div className="photos-grid">
         {
-          userMemories.map((photo) => {
+          userMemories.map((photo, index) => {
             return (
-              <div className="photo">
+              <div className="photo" key={index}>
               <img></img>
               <p>{photo.description}</p>
               </div>

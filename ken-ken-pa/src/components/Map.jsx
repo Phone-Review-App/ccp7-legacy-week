@@ -10,6 +10,7 @@ export default function Map(props) {
                 projection="geoMercator"
                 projectionConfig={{
                     center: [135, 35],
+                    // scale: 1200
                     scale: 1200
                 }}>
                 <Geographies

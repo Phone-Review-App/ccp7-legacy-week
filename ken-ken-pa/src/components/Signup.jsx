@@ -8,7 +8,10 @@ import "./Signup.css"
 export default function Signup(props) {
   const { currentLocale, setCurrentUser, setCurrentView } = props; 
   const [isloginUnsuccess, setLoginUnsuccess] = useState();
+
   const handleSubmit = async (event) => {
+
+    
     event.preventDefault();
     // inputs user email and password
     const userLoginInfo = { // 
@@ -24,8 +27,9 @@ export default function Signup(props) {
     } else { 
       setLoginUnsuccess(false);
     }
+    // console.log( "🦴", isloginUnsuccess);
     setCurrentUser(loginResult);
-
+    // console.log("💘",loginResult);
     setCurrentView('');
 
   };
@@ -36,6 +40,7 @@ export default function Signup(props) {
       console.log("🧿", isEnableToLogin.data);
       return isEnableToLogin.data; // =UID
     } catch (error) {
+      //alert(error);
       console.error(error);
     }
   };

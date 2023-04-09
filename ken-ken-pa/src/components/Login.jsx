@@ -10,8 +10,12 @@ import "./Login.css";
 
 
 export default function Login(props) {
-  const { currentLocale, setCurrentUser, setCurrentView } = props;
+  const { currentLocale, setCurrentUser, setCurrentView, currentView, prefectureCode } = props;
   const [changeState, triggerChangeState] = useState(false);
+
+  // Experiemental
+  // if user try to add memories from prefecture
+  const [ isFromAddMemPage, toggleIsFromAddMemPage] = useState(false)
   
   useEffect(()=>{
     console.log("🦊",changeState)
@@ -23,7 +27,12 @@ export default function Login(props) {
     triggerChangeState(!changeState);
   }
 
-  
+  // Check if user is from AddNewMemory Page, should direct user login if !loggedIn before add memory
+   const userFromAddMemPage =() => {
+    if(currentView !== "AddNewMemory"){
+      toggleIsFromAddMemPage(true);
+    }
+  }
   
 
   // login Success or error
@@ -46,12 +55,21 @@ export default function Login(props) {
     // when user login is unsuccessful
     if (loginResult === false || loginResult === undefined) {
       setLoginUnsuccess(true);
+      // console.error("😈", "loginUnsuccess(true)");
+      // React popup error required other packages to run, alert('') does not work
+      // alert('Login unsuccessful');
     // user login is successful
     } else { 
       setLoginUnsuccess(false);
+      // console.error("😠", "loginUnsuccess(false)")
     }
-
-    setCurrentView('');
+    if(isFromAddMemPage){
+      setCurrentView('AddNewMemory');
+      // Fixme: prefecture code should passed to Add New Memory Page
+    } else {
+      setCurrentView('');
+    }
+    
   };
 
   const tryLogin = async (userLoginInfo) => {
