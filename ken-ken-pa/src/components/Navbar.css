@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
 .navbar {
     display: inline-flex;
     flex-direction: column;
@@ -6,7 +8,7 @@
     height: 100vh;
 }
 
-.logout-button, .login-button {
+.logout-button, .login-button, .signup-button {
     font-size: 100%;
     padding: 5px 10px;
     margin-top: 30px;
@@ -22,7 +24,33 @@
     box-shadow: 0 5px 0 #f638388a;
 }
 
-.home-button {
+.home-button, .newMem-button {
+    font-size: 100%;
+    padding: 5px 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 100vh;
+    width: 60%;
+    min-width: 200px;
+    height: 35px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #8382828a;
+}
+
+.newMem-button {
+    font-size: 75%;
+    padding: 5px 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 100vh;
+    width: 70%;
+    min-width: 200px;
+    height: 35px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #8382828a;
+}
+
+.back-button {
     font-size: 100%;
     padding: 5px 30px;
     margin-top: 30px;
@@ -59,6 +87,7 @@
     margin-top: 30px;
     height: 35px;
     cursor: pointer;
+    font-family: "Anton", serif;
 }
 
 .logout-button:active, 

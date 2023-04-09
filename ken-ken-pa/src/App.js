@@ -94,7 +94,7 @@ const CurrentViewPortTrigger = () => {
   } 
   if (currentView === "Memories"){
 
-    setSelectedPrefecture("");
+    // setSelectedPrefecture("");
     return ( 
       <Memories currentLocale={currentLocale} onClick={handleViewChange} currentUser={currentUser}/>);
   } 

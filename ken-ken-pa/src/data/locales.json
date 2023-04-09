@@ -300,5 +300,9 @@
     "photo-zone": {
         "en": "Photo Zone",
         "ja": "フォトゾーン"
+    },
+    "back" :{
+        "en": "Back",
+        "ja": "戻る"
     }
 }
