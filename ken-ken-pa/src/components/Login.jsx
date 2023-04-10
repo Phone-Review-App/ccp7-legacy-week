@@ -62,12 +62,13 @@ export default function Login(props) {
     } else { 
       setLoginUnsuccess(false);
       // console.error("😠", "loginUnsuccess(false)")
+      setCurrentView('');
     }
     // if(isFromAddMemPage){
     //   setCurrentView('AddNewMemory');
     //   // Fixme: prefecture code should passed to Add New Memory Page
     // } else {
-      setCurrentView('');
+      // setCurrentView('');
     // }
     
   };

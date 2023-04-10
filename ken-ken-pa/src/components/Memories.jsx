@@ -29,9 +29,9 @@ export default function Memories(props) {
         <p>{UIText["photo-zone"][currentLocale]}</p>
         <div className="photos-grid">
         {
-          userMemories.map((photo) => {
+          userMemories.map((photo, index) => {
             return (
-              <div className="photo">
+              <div className="photo" key={index}>
               <img></img>
               <p>{photo.description}</p>
               </div>
