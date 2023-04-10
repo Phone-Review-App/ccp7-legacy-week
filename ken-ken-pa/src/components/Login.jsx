@@ -10,12 +10,12 @@ import "./Login.css";
 
 
 export default function Login(props) {
-  const { currentLocale, setCurrentUser, setCurrentView, currentView, prefectureCode } = props;
+  const { currentLocale, setCurrentUser, setCurrentView } = props;
   const [changeState, triggerChangeState] = useState(false);
 
   // Experiemental
   // if user try to add memories from prefecture
-  const [ isFromAddMemPage, toggleIsFromAddMemPage] = useState(false)
+  // const [ isFromAddMemPage, toggleIsFromAddMemPage] = useState(false)
   
   useEffect(()=>{
     console.log("🦊",changeState)
@@ -28,15 +28,15 @@ export default function Login(props) {
   }
 
   // Check if user is from AddNewMemory Page, should direct user login if !loggedIn before add memory
-   const userFromAddMemPage =() => {
-    if(currentView !== "AddNewMemory"){
-      toggleIsFromAddMemPage(true);
-    }
-  }
+  //  const userFromAddMemPage =() => {
+  //   if(currentView !== "AddNewMemory"){
+  //     toggleIsFromAddMemPage(true);
+  //   }
+  // }
   
 
   // login Success or error
-  const [isloginUnsuccess, setLoginUnsuccess] = useState();
+  const [isloginUnsuccess, setLoginUnsuccess] = useState(false);
   
   
   
@@ -63,12 +63,12 @@ export default function Login(props) {
       setLoginUnsuccess(false);
       // console.error("😠", "loginUnsuccess(false)")
     }
-    if(isFromAddMemPage){
-      setCurrentView('AddNewMemory');
-      // Fixme: prefecture code should passed to Add New Memory Page
-    } else {
+    // if(isFromAddMemPage){
+    //   setCurrentView('AddNewMemory');
+    //   // Fixme: prefecture code should passed to Add New Memory Page
+    // } else {
       setCurrentView('');
-    }
+    // }
     
   };
 
@@ -114,8 +114,8 @@ export default function Login(props) {
             }</button><br />
           
 
-          { isloginUnsuccess
-            && (<p id="err">{UIText["login-fail"][currentLocale]}</p>)
+          { isloginUnsuccess ? null :
+            <p id="err">{UIText["login-fail"][currentLocale]}</p> 
           }
          <SubmitBtn type="login" currentLocale={currentLocale}/>
     </form>

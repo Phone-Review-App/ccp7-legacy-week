@@ -35,7 +35,7 @@ export default function App() {
       setLoggedIn(false);
     }
     // console.log(currentUser)
-  }, [currentUser, currentView, isShown, loggedIn])
+  }, [currentUser, currentView, isShown])
 
   const handleViewChange = (event) => {
     // When user clicks button, currentView changes to value of button
@@ -124,14 +124,15 @@ const CurrentViewPortTrigger = () => {
       <h1>{UIText.appName[currentLocale]}</h1>
       
       <CurrentViewPortTrigger 
-          currentLocale={currentLocale}
+          // currentLocale={currentLocale}
           
-          currentView={currentView}
-          handleViewChange={handleViewChange}
-          loggedIn={loggedIn}
-          setCurrentUser={setCurrentUser}
-          setLoggedIn={setLoggedIn}
-          setCurrentView={setCurrentView}/>
+          // currentView={currentView}
+          // handleViewChange={handleViewChange}
+          // loggedIn={loggedIn}
+          // setCurrentUser={setCurrentUser}
+          // setLoggedIn={setLoggedIn}
+          // setCurrentView={setCurrentView}
+          />
       </div>
 
       { /* Navbar */}

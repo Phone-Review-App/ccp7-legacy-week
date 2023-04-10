@@ -14,7 +14,7 @@ export default function PopupMenu(props) {
                         : UIText.prefectures[selectedPrefecture][currentLocale] + UIText["add-memory-of"][currentLocale]
                 }
             </button>
-            
+            { " " }
             <button className="button" onClick={onClick} value="PrefectureMemories">
                 {
                     currentLocale === "en"
