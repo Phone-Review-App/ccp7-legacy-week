@@ -38,13 +38,11 @@ export default function Login(props) {
   // login Success or error
   const [isloginUnsuccess, setLoginUnsuccess] = useState(false);
   
-  let loginFail;
-  
-  
   
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
     // inputs user email and password
     const userLoginInfo = {
       email: event.target[0].value,
@@ -57,6 +55,7 @@ export default function Login(props) {
     // when user login is unsuccessful
     if (loginResult === false || loginResult === undefined) {
       setLoginUnsuccess(true);
+     
       // console.error("😈", "loginUnsuccess(true)");
       // React popup error required other packages to run, alert('') does not work
       // alert('Login unsuccessful');
@@ -73,7 +72,7 @@ export default function Login(props) {
     // } else {
       // setCurrentView('');
     // }
-    loginFail = isloginUnsuccess ? (<><p id="err">{UIText["login-fail"][currentLocale]}</p></>) : null;
+    
   };
 
   const tryLogin = async (userLoginInfo) => {
@@ -117,10 +116,9 @@ export default function Login(props) {
             {UIText.signup[currentLocale]
             }</button><br />
           
-            {loginFail}
-          {/* { isloginUnsuccess ? null :
+          { isloginUnsuccess ? null :
             <p id="err">{UIText["login-fail"][currentLocale]}</p> 
-          } */}
+          }
          <SubmitBtn type="login" currentLocale={currentLocale}/>
     </form>
     </div>
