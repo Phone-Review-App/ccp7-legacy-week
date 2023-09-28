@@ -1,6 +1,7 @@
-# Ken-Ken-Pa (ccp7-greenfield)
+# Ken-Ken-Pa (greenfield project)
 
 ### [Try Ken-Ken-Pa](https://ken-ken-pa.onrender.com/)
+(Depolyment Link Temperary Out of Order)
 
 # Introduction
 
